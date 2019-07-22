@@ -32,23 +32,26 @@ android {
 }
 
 dependencies {
-    // Kotlin
-    implementation deps.kotlin.stdlib
-    implementation deps.support.core_ktx
+    implementation (
+            // Kotlin
+            deps.kotlin.stdlib,
+            deps.support.core_ktx,
 
-    // Support libraries
-    implementation deps.support.app_compat
-    implementation deps.support.design
+            // Support libraries
+            deps.support.app_compat,
+            deps.support.design,
 
-    // Navigation
-    implementation deps.navigation.runtime_ktx
-    implementation deps.navigation.fragment_ktx
-    implementation deps.navigation.ui_ktx
+            // Navigation
+            deps.navigation.runtime_ktx,
+            deps.navigation.fragment_ktx,
+            deps.navigation.ui_ktx,
 
-    // Dagger
-    implementation deps.dagger.runtime
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
+            // Dagger
+            deps.dagger.runtime,
+            deps.dagger.android,
+            deps.dagger.android_support
+    )
+
     kapt deps.dagger.compiler
     kapt deps.dagger.android_support_compiler
 }
