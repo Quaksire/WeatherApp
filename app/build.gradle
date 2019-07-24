@@ -40,6 +40,7 @@ dependencies {
             // Support libraries
             deps.support.app_compat,
             deps.support.design,
+            deps.support.drawer_layout,
 
             // Navigation
             deps.navigation.runtime_ktx,
