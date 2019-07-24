@@ -7,6 +7,7 @@
     <fragment
         android:id="@+id/citiesFragment"
         android:name="com.quaksire.weatherapp.CitiesFragment"
+        android:label="@string/locations"
         tools:layout="@layout/fragment_cities">
         <action
             android:id="@+id/action_cities_to_city"
@@ -28,6 +29,7 @@
     <fragment
             android:id="@+id/settingsFragment"
             android:name="com.quaksire.weatherapp.SettingsFragment"
+            android:label="@string/settings"
             tools:layout="@layout/fragment_settings">
     </fragment>
 
