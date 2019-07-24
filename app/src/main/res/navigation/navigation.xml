@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/navigation"
+            app:startDestination="@layout/fragment_cities">
+    <fragment
+        android:id="@+id/citiesFragment"
+        android:name="com.quaksire.weatherapp.CitiesFragment"
+        tools:layout="@layout/fragment_cities">
+        <action
+            android:id="@+id/action_cities_to_city"
+            app:destination="@id/cityWeatherFragment"/>
+        <action
+                android:id="@+id/action_cities_to_settings"
+                app:destination="@id/settingsFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/cityWeatherFragment"
+        android:name="com.quaksire.weatherapp.CityWeatherFragment"
+        tools:layout="@layout/fragment_city_weather">
+        <argument
+            android:name="cityName"
+            app:argType="string"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/settingsFragment"
+            android:name="com.quaksire.weatherapp.SettingsFragment"
+            tools:layout="@layout/fragment_settings">
+    </fragment>
+
+</navigation>

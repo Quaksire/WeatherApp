@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    implementation (
+    implementation(
             // Kotlin
             deps.kotlin.stdlib,
             deps.support.core_ktx,
@@ -52,6 +52,7 @@ dependencies {
             deps.dagger.android_support
     )
 
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt deps.dagger.compiler
     kapt deps.dagger.android_support_compiler
 }
