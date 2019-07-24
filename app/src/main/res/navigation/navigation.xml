@@ -31,4 +31,10 @@
             tools:layout="@layout/fragment_settings">
     </fragment>
 
+    <fragment
+            android:id="@+id/addCityFragment"
+            android:name="com.quaksire.weatherapp.AddCityFragment"
+            tools:layout="@layout/fragment_add_city">
+    </fragment>
+
 </navigation>
