@@ -46,9 +46,11 @@ class CityDaoTest {
     fun canDeleteCity() {
         this.cityDao.createCity(cityLondonEntity)
 
-        val result = this.cityDao.deleteCity(cityLondonEntity)
+        this.cityDao.deleteCity(cityLondonEntity)
 
-        Assert.assertEquals(cityLondonEntity, result)
+        val result = this.cityDao.getCity(cityLondonEntity.cityId)
+
+        Assert.assertEquals(null, result)
     }
 
     @Test
@@ -63,7 +65,7 @@ class CityDaoTest {
     fun canQueryAllCities() {
         this.cityDao.createCity(cityLondonEntity)
         val result = this.cityDao.getAllCities()
-        Assert.assertEquals(cityLondonEntity, result)
+        Assert.assertEquals(cityLondonEntity, result[0])
     }
 
     @Test

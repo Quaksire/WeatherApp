@@ -22,5 +22,5 @@ interface CityDao {
     fun createCity(city: CityEntity): Long
 
     @Delete
-    fun deleteCity(city: CityEntity) : CityEntity
+    fun deleteCity(city: CityEntity)
 }
