@@ -41,6 +41,7 @@ dependencies {
             deps.support.app_compat,
             deps.support.design,
             deps.support.drawer_layout,
+            deps.constraint_layout,
 
             // Navigation
             deps.navigation.runtime_ktx,
