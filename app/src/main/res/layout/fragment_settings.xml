@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<layout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".SettingsFragment"
-        android:padding="16dp">
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="isFahrenheit" type="boolean"/>
+    </data>
 
-    <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/temperatureSwitch"
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_fahrenheit"/>
-</RelativeLayout>
+            android:layout_height="match_parent"
+            tools:context=".SettingsFragment"
+            android:padding="16dp">
+
+        <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/temperatureSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_fahrenheit"
+                android:checked="@{isFahrenheit}"/>
+    </RelativeLayout>
+</layout>
