@@ -6,5 +6,6 @@
 
     <string name="locations">Locations</string>
     <string name="settings">Settings</string>
+    <string name="add_location">Add Location</string>
     <string name="settings_fahrenheit">Display fahrenheit</string>
 </resources>

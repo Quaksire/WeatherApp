@@ -15,6 +15,10 @@
         <action
                 android:id="@+id/action_cities_to_settings"
                 app:destination="@id/settingsFragment"/>
+
+        <action
+                android:id="@+id/action_cities_to_add_city"
+                app:destination="@id/addCityFragment"/>
     </fragment>
 
     <fragment
@@ -36,6 +40,7 @@
     <fragment
             android:id="@+id/addCityFragment"
             android:name="com.quaksire.weatherapp.AddCityFragment"
+            android:label="@string/add_location"
             tools:layout="@layout/fragment_add_city">
     </fragment>
 
