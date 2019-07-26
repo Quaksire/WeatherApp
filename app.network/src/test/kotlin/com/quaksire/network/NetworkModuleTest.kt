@@ -1,6 +1,5 @@
 package com.quaksire.network
 
-import com.quaksire.network.module.NetworkModule
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before

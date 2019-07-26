@@ -41,12 +41,12 @@ dependencies {
     implementation deps.support.core_ktx
     implementation deps.kotlin.stdlib
     implementation deps.dagger.runtime
+    kapt deps.dagger.compiler
 
     testImplementation deps.junit
     androidTestImplementation deps.junit
     androidTestImplementation deps.atsl.runner
 
-}
-repositories {
-    mavenCentral()
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02'
+    kapt deps.lifecycle.compiler
 }

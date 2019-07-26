@@ -1,5 +1,6 @@
 package com.quaksire.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -13,10 +14,10 @@ import com.quaksire.database.entity.CityEntity
 interface CityDao {
 
     @Query("Select * From cities")
-    fun getAllCities(): List<CityEntity>
+    fun getAllCities(): LiveData<List<CityEntity>>
 
     @Query("Select * From cities Where city_id = :cityId")
-    fun getCity(cityId: String): CityEntity
+    fun getCity(cityId: Int): CityEntity
 
     @Insert
     fun createCity(city: CityEntity): Long

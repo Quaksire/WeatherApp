@@ -1,4 +1,5 @@
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation (
@@ -8,7 +9,11 @@ dependencies {
             deps.retrofit.rxAdapter,
             deps.okio,
             deps.oktttp,
-            deps.dagger.runtime
+            deps.dagger.runtime,
+
+            deps.lifecycle.runtime,
+            deps.lifecycle.extensions,
+            deps.lifecycle.livedata
     )
 
     testImplementation (
@@ -19,6 +24,9 @@ dependencies {
             deps.powermock.powermockJunit4RuleAgent,
             deps.retrofit.mock
     )
+
+    kapt deps.lifecycle.compiler
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02'
 }
 
 sourceCompatibility = "8"

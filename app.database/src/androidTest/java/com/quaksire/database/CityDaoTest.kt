@@ -19,7 +19,7 @@ class CityDaoTest {
     lateinit var database: AppDatabase
     lateinit var cityDao: CityDao
 
-    private val cityLondonEntity = CityEntity("CityId", "London", "UK")
+    private val cityLondonEntity = CityEntity(1234, "London", "UK")
 
     @Before
     fun setUp() {

@@ -13,7 +13,7 @@ import javax.inject.Singleton
  * Created by Julio.
  */
 @Module
-class DatabaseModule(val context: Context) {
+class DatabaseModule(private val context: Context) {
 
     @Provides
     @Named("DATABASE_NAME")

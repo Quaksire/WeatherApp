@@ -5,7 +5,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import rx.Single
 
-
 /**
  * Created by Julio.
  */

@@ -26,8 +26,8 @@
         android:name="com.quaksire.weatherapp.CityWeatherFragment"
         tools:layout="@layout/fragment_city_weather">
         <argument
-            android:name="cityName"
-            app:argType="string"/>
+            android:name="cityId"
+            app:argType="Int"/>
     </fragment>
 
     <fragment

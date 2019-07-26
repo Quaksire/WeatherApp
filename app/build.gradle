@@ -14,6 +14,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'WEATHER_KEY', '"0b4b04e7cd0342fa7352e106d38d34ae"'
+        buildConfigField 'String', 'WEATHER_URL', '"http://api.openweathermap.org"'
     }
     buildTypes {
         release {
@@ -33,9 +36,18 @@ android {
 
 dependencies {
     implementation(
+            project(':app.network'),
+            project(':app.database'),
+
             // Kotlin
             deps.kotlin.stdlib,
             deps.support.core_ktx,
+
+            // Lifecycle
+            deps.lifecycle.runtime,
+            deps.lifecycle.extensions,
+            deps.lifecycle.viewmodel_ktx,
+            'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02',
 
             // Support libraries
             deps.support.app_compat,
@@ -51,10 +63,18 @@ dependencies {
             // Dagger
             deps.dagger.runtime,
             deps.dagger.android,
-            deps.dagger.android_support
+            deps.dagger.android_support,
+
+            // Other
+            deps.retrofit.gson,
+            deps.retrofit.rxAdapter,
+            deps.room.runtime,
     )
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    // https://stackoverflow.com/questions/45099688/error-error-nonexistentclass-kotlin-in-multi-module-dagger-project
     kapt deps.dagger.compiler
     kapt deps.dagger.android_support_compiler
+    kapt deps.lifecycle.compiler
+    kapt deps.room.compiler
 }
