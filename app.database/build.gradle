@@ -41,6 +41,8 @@ dependencies {
     implementation deps.support.core_ktx
     implementation deps.kotlin.stdlib
     implementation deps.dagger.runtime
+    implementation deps.retrofit.gson
+    implementation deps.work.runtime_ktx
     kapt deps.dagger.compiler
 
     testImplementation deps.junit
