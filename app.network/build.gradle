@@ -26,6 +26,7 @@ dependencies {
     )
 
     kapt deps.lifecycle.compiler
+    kapt deps.dagger.compiler
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02'
 }
 

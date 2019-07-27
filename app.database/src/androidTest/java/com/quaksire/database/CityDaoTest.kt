@@ -1,14 +1,13 @@
 package com.quaksire.database
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 import com.quaksire.database.dao.CityDao
 import com.quaksire.database.entity.CityEntity
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
+import com.quaksire.database.utils.LiveDataTestUtil.getValue
+import org.junit.*
 import org.junit.runner.RunWith
 
 /**
@@ -16,8 +15,12 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class CityDaoTest {
-    lateinit var database: AppDatabase
-    lateinit var cityDao: CityDao
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    private lateinit var database: AppDatabase
+    private lateinit var cityDao: CityDao
 
     private val cityLondonEntity = CityEntity(1234, "London", "UK")
 
@@ -64,13 +67,14 @@ class CityDaoTest {
     @Test
     fun canQueryAllCities() {
         this.cityDao.createCity(cityLondonEntity)
-        val result = this.cityDao.getAllCities()
+        val result = getValue(this.cityDao.getAllCities())
+
         Assert.assertEquals(cityLondonEntity, result[0])
     }
 
     @Test
     fun canQueryAllCitiesReturnEmptyListIfNoCitiesExists() {
-        val result = this.cityDao.getAllCities()
+        val result = getValue(this.cityDao.getAllCities())
         Assert.assertEquals(0, result.size)
     }
 }

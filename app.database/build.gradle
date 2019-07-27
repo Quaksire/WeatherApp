@@ -44,8 +44,10 @@ dependencies {
     kapt deps.dagger.compiler
 
     testImplementation deps.junit
+    androidTestImplementation deps.arch_core.testing
     androidTestImplementation deps.junit
     androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
 
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02'
     kapt deps.lifecycle.compiler
