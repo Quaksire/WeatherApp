@@ -60,6 +60,9 @@ dependencies {
             deps.navigation.fragment_ktx,
             deps.navigation.ui_ktx,
 
+            // Coroutines
+            deps.work.runtime_ktx,
+
             // Dagger
             deps.dagger.runtime,
             deps.dagger.android,

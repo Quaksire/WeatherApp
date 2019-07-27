@@ -9,4 +9,7 @@
     <string name="add_location">Add Location</string>
     <string name="add_location_hint">Type city name</string>
     <string name="settings_fahrenheit">Display fahrenheit</string>
+
+    <string name="settings_menu_save">Save</string>
+    <string name="add_location_menu_add">Add</string>
 </resources>

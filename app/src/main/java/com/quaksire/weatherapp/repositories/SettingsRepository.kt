@@ -3,6 +3,7 @@ package com.quaksire.weatherapp.repositories
 import androidx.lifecycle.LiveData
 import com.quaksire.database.dao.SettingsDao
 import com.quaksire.database.entity.SettingsEntity
+import kotlinx.coroutines.*
 
 /**
  * Created by Julio.
@@ -14,6 +15,8 @@ class SettingsRepository(private val settingsDao: SettingsDao) {
     }
 
     fun saveSettings(settingsEntity: SettingsEntity) {
-        settingsDao.createSettings(settingsEntity)
+        GlobalScope.launch(Dispatchers.IO) {
+            settingsDao.createSettings(settingsEntity)
+        }
     }
 }

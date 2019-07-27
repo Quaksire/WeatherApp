@@ -49,7 +49,7 @@ class SettingsFragment : Fragment() {
         val viewModel = ViewModelProviders.of(this, factory).get(SettingsViewModel::class.java)
 
         viewModel.displayFarenheit.observe(viewLifecycleOwner, Observer { settings ->
-            temperatureSwitchCompat.isChecked = settings[0].displayTemperatureInFahrenheit
+            if(settings.isNotEmpty()) temperatureSwitchCompat.isChecked = settings[0].displayTemperatureInFahrenheit
         })
     }
 }
