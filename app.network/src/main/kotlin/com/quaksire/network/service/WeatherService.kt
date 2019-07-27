@@ -3,7 +3,7 @@ package com.quaksire.network.service
 import com.quaksire.network.model.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
-import rx.Single
+import io.reactivex.Single
 
 /**
  * Created by Julio.

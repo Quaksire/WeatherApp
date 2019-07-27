@@ -7,13 +7,10 @@ dependencies {
             deps.retrofit.runtime,
             deps.retrofit.gson,
             deps.retrofit.rxAdapter,
+            deps.rxjava2,
             deps.okio,
             deps.oktttp,
-            deps.dagger.runtime,
-
-            deps.lifecycle.runtime,
-            deps.lifecycle.extensions,
-            deps.lifecycle.livedata
+            deps.dagger.runtime
     )
 
     testImplementation (
@@ -27,7 +24,6 @@ dependencies {
 
     kapt deps.lifecycle.compiler
     kapt deps.dagger.compiler
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02'
 }
 
 sourceCompatibility = "8"

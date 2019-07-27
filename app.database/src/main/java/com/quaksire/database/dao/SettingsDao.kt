@@ -15,6 +15,9 @@ interface SettingsDao {
     @Query("Select * From temperatureSettings")
     fun getSettings(): LiveData<List<SettingsEntity>>
 
+    @Query("Select * From temperatureSettings")
+    fun getSettingsSync(): List<SettingsEntity>
+
     @Insert(onConflict = REPLACE)
     fun createSettings(settings: SettingsEntity): Long
 }

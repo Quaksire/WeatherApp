@@ -1,10 +1,7 @@
 package com.quaksire.database.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.quaksire.database.entity.CityEntity
 
 /**
@@ -19,7 +16,7 @@ interface CityDao {
     @Query("Select * From cities Where city_id = :cityId")
     fun getCity(cityId: Int): CityEntity
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createCity(city: CityEntity): Long
 
     @Delete

@@ -1,28 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:layout_margin="16dp"
-             tools:context=".CityWeatherFragment">
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="currentWeather"
+                  type="com.quaksire.network.model.Forecast"/>
+        <variable name="plusOne"
+                  type="com.quaksire.network.model.Forecast"/>
+        <variable name="plusTwo"
+                  type="com.quaksire.network.model.Forecast"/>
+        <variable name="plusThree"
+                  type="com.quaksire.network.model.Forecast"/>
+        <variable name="plusFour"
+                  type="com.quaksire.network.model.Forecast"/>
+    </data>
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardUseCompatPadding="true">
-
-        <RelativeLayout
+    <FrameLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:layout_margin="16dp">
+        <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:text="asdf"
-                      tools:text="asdf"/>
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true">
 
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:id="@+id/currentTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="@{Double.toString(currentWeather.main.temp)}"
+                        tools:text="asdf"/>
 
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+                <ImageView
+                        android:id="@+id/current"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_centerInParent="true"
+                        android:layout_below="@id/currentTemperature"/>
 
-</FrameLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/current"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false"
+                        android:weightSum="4">
+
+                    <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{plusOne.toDayOfWeekShortFormat()}"/>
+                        <ImageView
+                                android:id="@+id/icon1"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"/>
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{Double.toString(plusOne.main.temp)}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{plusTwo.toDayOfWeekShortFormat()}"/>
+                        <ImageView
+                                android:id="@+id/icon2"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"/>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{Double.toString(plusTwo.main.temp)}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{plusThree.toDayOfWeekShortFormat()}"/>
+                        <ImageView
+                                android:id="@+id/icon3"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"/>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{Double.toString(plusThree.main.temp)}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="0px"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{plusFour.toDayOfWeekShortFormat()}"/>
+                        <ImageView
+                                android:id="@+id/icon4"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"/>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@{Double.toString(plusFour.main.temp)}"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</layout>
+

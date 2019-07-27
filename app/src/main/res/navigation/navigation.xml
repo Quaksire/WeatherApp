@@ -10,15 +10,27 @@
         android:label="@string/locations"
         tools:layout="@layout/fragment_cities">
         <action
-            android:id="@+id/action_cities_to_city"
-            app:destination="@id/cityWeatherFragment"/>
+                android:id="@+id/action_cities_to_city"
+                app:destination="@id/cityWeatherFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
         <action
                 android:id="@+id/action_cities_to_settings"
-                app:destination="@id/settingsFragment"/>
+                app:destination="@id/settingsFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
 
         <action
                 android:id="@+id/action_cities_to_add_city"
-                app:destination="@id/addCityFragment"/>
+                app:destination="@id/addCityFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment

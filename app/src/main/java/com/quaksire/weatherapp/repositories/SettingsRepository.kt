@@ -14,6 +14,10 @@ class SettingsRepository(private val settingsDao: SettingsDao) {
         return settingsDao.getSettings()
     }
 
+    fun getSettingsSync(): List<SettingsEntity> {
+        return settingsDao.getSettingsSync()
+    }
+
     fun saveSettings(settingsEntity: SettingsEntity) {
         GlobalScope.launch(Dispatchers.IO) {
             settingsDao.createSettings(settingsEntity)
