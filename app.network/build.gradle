@@ -19,6 +19,7 @@ dependencies {
             deps.powermock.powermockJunit4,
             deps.powermock.powermockJunit4Rule,
             deps.powermock.powermockJunit4RuleAgent,
+            deps.mock_web_server,
             deps.retrofit.mock
     )
 

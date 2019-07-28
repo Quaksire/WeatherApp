@@ -3,10 +3,4 @@
     <declare-styleable name="CityView">
         <attr name="city" format="reference"/>
     </declare-styleable>
-
-    <declare-styleable name="WeatherView">
-        <attr name="image" format="string"/>
-        <attr name="day" format="string"/>
-        <attr name="temperature" format="string"/>
-    </declare-styleable>
 </resources>

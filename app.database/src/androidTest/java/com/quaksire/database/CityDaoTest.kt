@@ -22,7 +22,7 @@ class CityDaoTest {
     private lateinit var database: AppDatabase
     private lateinit var cityDao: CityDao
 
-    private val cityLondonEntity = CityEntity(1234, "London", "UK")
+    private val cityLondonEntity = CityEntity(1234, "London", "UK", 1)
 
     @Before
     fun setUp() {
@@ -51,7 +51,7 @@ class CityDaoTest {
 
         this.cityDao.deleteCity(cityLondonEntity)
 
-        val result = this.cityDao.getCity(cityLondonEntity.cityId)
+        val result = this.cityDao.getCity(cityLondonEntity.id)
 
         Assert.assertEquals(null, result)
     }
@@ -60,7 +60,7 @@ class CityDaoTest {
     fun canQueryCityById() {
         this.cityDao.createCity(cityLondonEntity)
 
-        val result = this.cityDao.getCity(cityLondonEntity.cityId)
+        val result = this.cityDao.getCity(cityLondonEntity.id)
         Assert.assertEquals(cityLondonEntity, result)
     }
 
@@ -75,6 +75,21 @@ class CityDaoTest {
     @Test
     fun canQueryAllCitiesReturnEmptyListIfNoCitiesExists() {
         val result = getValue(this.cityDao.getAllCities())
+        Assert.assertEquals(0, result.size)
+    }
+
+    @Test
+    fun canQueryAllNonSelectedCities() {
+        cityLondonEntity.selected = 0
+        this.cityDao.createCity(cityLondonEntity)
+        val result = getValue(this.cityDao.getAllNonSelectedCities())
+        Assert.assertEquals(1, result.size)
+    }
+
+    @Test
+    fun selectedCityIsNotReturnedOnNonSelectedCities() {
+        this.cityDao.createCity(cityLondonEntity)
+        val result = getValue(this.cityDao.getAllNonSelectedCities())
         Assert.assertEquals(0, result.size)
     }
 }

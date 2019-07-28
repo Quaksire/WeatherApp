@@ -1,5 +1,6 @@
 package com.quaksire.network
 
+import com.quaksire.network.module.NetworkModule
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -13,7 +14,7 @@ class NetworkModuleTest {
 
     @Before
     fun setUp() {
-        this.mRetrofitModule = NetworkModule("http://test")
+        this.mRetrofitModule = NetworkModule("http://test", "SecretKey")
     }
 
     @After
@@ -49,7 +50,6 @@ class NetworkModuleTest {
     fun canProvideRetrofit() {
         Assert.assertNotNull(
             this.mRetrofitModule!!.provideRetrofit(
-                this.mRetrofitModule!!.provideClient(),
                 this.mRetrofitModule!!.provideGsonConverterFactory(
                     this.mRetrofitModule!!.provideGson()
                 ),

@@ -82,6 +82,15 @@ dependencies {
             deps.glide.runtime
     )
 
+    testImplementation (
+            deps.junit,
+            deps.powermock.runtime,
+            deps.powermock.powermockJunit4,
+            deps.powermock.powermockJunit4Rule,
+            deps.powermock.powermockJunit4RuleAgent,
+            deps.mock_web_server
+    )
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // https://stackoverflow.com/questions/45099688/error-error-nonexistentclass-kotlin-in-multi-module-dagger-project
     kapt deps.dagger.compiler
