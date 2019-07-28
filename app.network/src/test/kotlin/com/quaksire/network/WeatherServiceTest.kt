@@ -36,7 +36,7 @@ class WeatherServiceTest {
     }
 
     @Test
-    fun getUser() {
+    fun getWeather() {
         enqueueResponse("response_200.json")
         service.getWeather(1234, "", "", "")
             .test()
