@@ -91,6 +91,22 @@ dependencies {
             deps.mock_web_server
     )
 
+    androidTestImplementation (
+            deps.atsl.runner,
+            deps.atsl.rules,
+            deps.support.app_compat,
+            deps.support.recyclerview,
+            deps.support.cardview,
+            deps.support.design,
+
+            deps.espresso.core,
+            deps.espresso.contrib,
+
+            deps.arch_core.testing,
+            deps.mockito.core,
+            deps.mockito.android
+    )
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     // https://stackoverflow.com/questions/45099688/error-error-nonexistentclass-kotlin-in-multi-module-dagger-project
     kapt deps.dagger.compiler
