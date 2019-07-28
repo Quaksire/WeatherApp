@@ -40,6 +40,10 @@ class CityWeatherFragment : Fragment() {
         this.binding = DataBindingUtil.inflate<FragmentCityWeatherBinding>(inflater, R.layout.fragment_city_weather, container, false)
 
         val cityId = arguments!!.getInt("cityId", 0)
+        val cityName = arguments!!.getString("cityName")
+
+        (activity as MainActivity).supportActionBar?.title = cityName
+        
         subscribeUI(cityId)
 
         return this.binding.root

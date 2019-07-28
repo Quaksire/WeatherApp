@@ -2,7 +2,6 @@ package com.quaksire.database.worker
 
 import android.content.Context
 import android.util.Log
-import androidx.room.Room
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.google.gson.Gson
@@ -26,12 +25,13 @@ class CitiesSeed(context: Context, workerParams: WorkerParameters)
                 inputStream.reader().use { jsonReader ->
                     val citiesType = object : TypeToken<List<CityEntity>>() {}.type
 
-                    val cityEntities: List<CityEntity> = Gson().fromJson(jsonReader, citiesType)
+                    var cityEntities: List<CityEntity> = Gson().fromJson(jsonReader, citiesType)
+                    cityEntities = cityEntities.map {
+                        CityEntity(it.id, it.name, it.country, 0)
+                    }
 
-                    val database = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "CitiesDatabase.db")
-                        .build()
-
-                    database.cityDao().insertAll(cityEntities)
+                    val cityDao = AppDatabase.getInstance(applicationContext).cityDao()
+                    cityDao.insertAll(cityEntities)
                     Result.success()
                 }
             }

@@ -10,11 +10,17 @@ import com.quaksire.database.entity.CityEntity
 @Dao
 interface CityDao {
 
-    @Query("Select * From cities")
+    @Query("Select * From cities Where selected Like 1")
     fun getAllCities(): LiveData<List<CityEntity>>
+
+    @Query("Select * From cities Where selected Like 0")
+    fun getAllNonSelectedCities(): LiveData<List<CityEntity>>
 
     @Query("Select * From cities Where city_id = :cityId")
     fun getCity(cityId: Int): CityEntity
+
+    @Query("Select * From cities Where name Like '%' || :name || '%'")
+    fun searchCityByName(name: String): List<CityEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun createCity(city: CityEntity): Long

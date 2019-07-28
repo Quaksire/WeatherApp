@@ -26,7 +26,9 @@ class CitiesAdapter : RecyclerView.Adapter<CitiesAdapter.CityItemViewHolder>() {
     override fun onBindViewHolder(holder: CityItemViewHolder, position: Int) {
         holder.cityView.findViewById<TextView>(R.id.cityName).text = citiesCollection[position].name
         holder.cityView.setOnClickListener{
-            val bundle = bundleOf("cityId" to citiesCollection[position].cityId)
+            val bundle = bundleOf(
+                "cityId" to citiesCollection[position].id,
+                "cityName" to  citiesCollection[position].name)
             Navigation.findNavController(holder.itemView).navigate(R.id.action_cities_to_city, bundle)
         }
     }

@@ -41,6 +41,11 @@
             android:name="cityId"
             app:argType="integer"
             android:defaultValue="0"/>
+
+        <argument
+                android:name="cityName"
+                app:argType="string"
+                android:defaultValue="0"/>
     </fragment>
 
     <fragment
