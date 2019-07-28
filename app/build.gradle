@@ -4,6 +4,16 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
+apply plugin: 'checkstyle'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'jacoco'
+
+def debugProperties = new Properties()
+file("debug.properties").withInputStream { debugProperties.load(it) }
+
+def releaseProperties = new Properties()
+file("release.properties").withInputStream { releaseProperties.load(it) }
+
 android {
     compileSdkVersion build_versions.target_sdk
     buildToolsVersion build_versions.build_tools
@@ -12,17 +22,25 @@ android {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        buildConfigField 'String', 'WEATHER_KEY', '"0b4b04e7cd0342fa7352e106d38d34ae"'
-        buildConfigField 'String', 'WEATHER_URL', '"http://api.openweathermap.org"'
-        buildConfigField 'String', 'WEATHER_ICONS_URL', '"http://openweathermap.org/img/wn/"'
     }
     buildTypes {
+        debug {
+            testCoverageEnabled true
+            buildConfigField 'String', 'WEATHER_KEY', debugProperties.getProperty('weather_key')
+            buildConfigField 'String', 'WEATHER_URL', debugProperties.getProperty('weather_url')
+            buildConfigField 'String', 'WEATHER_ICONS_URL', debugProperties.getProperty('weather_images_url')
+        }
+
         release {
             minifyEnabled false
+            testCoverageEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField 'String', 'WEATHER_KEY', releaseProperties.getProperty('weather_key')
+            buildConfigField 'String', 'WEATHER_URL', releaseProperties.getProperty('weather_url')
+            buildConfigField 'String', 'WEATHER_ICONS_URL', releaseProperties.getProperty('weather_images_url')
         }
     }
 
@@ -73,13 +91,20 @@ dependencies {
             deps.dagger.android,
             deps.dagger.android_support,
 
+            // Retrofit
+            deps.retrofit.runtime,
+            deps.retrofit.gson,
+            deps.retrofit.rxAdapter,
+
             // Other
             deps.retrofit.gson,
             deps.retrofit.rxAdapter,
             deps.room.runtime,
             deps.rxjava2,
             deps.rx_android,
-            deps.glide.runtime
+            deps.glide.runtime,
+            deps.okio,
+            deps.oktttp
     )
 
     testImplementation (
@@ -110,10 +135,57 @@ dependencies {
     )
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    // https://stackoverflow.com/questions/45099688/error-error-nonexistentclass-kotlin-in-multi-module-dagger-project
     kapt deps.dagger.compiler
     kapt deps.dagger.android_support_compiler
     kapt deps.lifecycle.compiler
     kapt deps.room.compiler
     kapt deps.glide.compiler
+}
+
+// ===========================
+// Jacoco
+// ===========================
+
+task fullCoverageReport(type: JacocoReport) {
+    dependsOn 'createDebugCoverageReport'
+    dependsOn 'testDebugUnitTest'
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*',
+                      '**/*Test*.*', 'android/**/*.*',
+                      '**/*_MembersInjector.class',
+                      '**/Dagger*Component.class',
+                      '**/Dagger*Component$Builder.class',
+                      '**/*_*Factory.class',
+                      '**/*ComponentImpl.class',
+                      '**/*SubComponentBuilder.class']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ])
+}
+
+// ===========================
+// CheckStyle
+// ===========================
+
+checkstyle {
+    toolVersion '7.8.1'
+    configFile file("../checkstyle.xml")
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
+    }
 }
