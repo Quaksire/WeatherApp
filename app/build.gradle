@@ -104,7 +104,9 @@ dependencies {
 
             deps.arch_core.testing,
             deps.mockito.core,
-            deps.mockito.android
+            deps.mockito.android,
+
+            deps.mock_web_server
     )
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

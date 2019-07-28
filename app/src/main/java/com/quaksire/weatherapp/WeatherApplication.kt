@@ -19,7 +19,7 @@ class WeatherApplication: Application() {
 
         appComponent = DaggerAppComponent.builder()
             .databaseModule(DatabaseModule(this))
-            .networkModule(NetworkModule(BuildConfig.WEATHER_URL, BuildConfig.WEATHER_KEY))
+            .networkModule(NetworkModule(Constants.weatherUrl, Constants.weatherKey))
             .repositoryModule(RepositoryModule())
             .build()
     }
